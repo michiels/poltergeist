@@ -30,6 +30,10 @@ class Poltergeist.Browser
       @owner.sendError(new Poltergeist.JavascriptError(errors))
     else
       @owner.sendResponse(response)
+  
+  sendEvent: (eventType, args...) ->
+    @page.sendEvent(eventType, args...)
+    this.sendResponse(true)
 
   getNode: (page_id, id, callback) ->
     if page_id == @page_id
@@ -127,6 +131,15 @@ class Poltergeist.Browser
   pop_frame: ->
     @page.popFrame()
     this.sendResponse(true)
+    
+  mouse_down_at: (x, y) ->
+    this.sendEvent("mousedown", x, y)
+  
+  mouse_move_at: (x, y) ->
+    this.sendEvent("mousemove", x, y)
+  
+  mouse_up_at: (x, y) ->
+    this.sendEvent("mouseup", x, y)
 
   click: (page_id, id) ->
     # We just check the node is not obsolete before proceeding. If it is,

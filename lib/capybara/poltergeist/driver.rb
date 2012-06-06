@@ -97,6 +97,18 @@ module Capybara::Poltergeist
     def within_frame(id, &block)
       browser.within_frame(id, &block)
     end
+    
+    def mouse_down_at(x, y)
+      browser.mouse_down_at(x, y)
+    end
+    
+    def mouse_move_at(x, y)
+      browser.mouse_move_at(x, y)
+    end
+    
+    def mouse_up_at(x, y)
+      browser.mouse_up_at(x, y)
+    end
 
     def reset!
       browser.reset
